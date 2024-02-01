@@ -13,6 +13,14 @@
     "files": [
         "./dist"
     ],
+    "license": "MIT",
+    "author": {
+        "name": "Tronikelis"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Tronikelis/gauk"
+    },
     "scripts": {
         "build": "tsup"
     },
