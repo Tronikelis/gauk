@@ -111,7 +111,7 @@ export default class Gauk {
         const data = await this.parseResponseData<T>(response, options.responseType);
 
         const combined = {
-            ...response.clone(),
+            ...response,
             data,
         };
 
