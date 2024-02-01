@@ -28,7 +28,7 @@ export default class Gauk {
     private options: Options | undefined;
     private beforeRequest: BeforeRequestFn[];
 
-    constructor({ options, beforeRequest = [] }: Init) {
+    constructor({ options, beforeRequest = [] }: Init = {}) {
         this.options = this.combineOptions(options);
         this.beforeRequest = beforeRequest;
     }
