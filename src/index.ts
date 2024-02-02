@@ -17,7 +17,7 @@ export type IResponse<T> = {
     data: T | undefined;
 } & Response;
 
-export type BeforeRequestFn = (options: Options) => Promise<void>;
+export type BeforeRequestFn = (url: string, options: Options) => Promise<void>;
 
 export type Init = {
     options?: OptionsUser;
@@ -88,14 +88,19 @@ export default class Gauk {
         return parsedBody;
     }
 
-    private async prepareOptions(optionsUser?: OptionsUser): Promise<Options> {
-        const combinedOptions = this.combineOptions(this.options, optionsUser);
+    private async prepareOptions(
+        url: string,
+        optionsUser?: OptionsUser
+    ): Promise<[string, Options]> {
+        const options = this.combineOptions(this.options, optionsUser);
+
+        url = this.concat(options.baseUrl || "", url);
 
         for (const beforeRequest of this.beforeRequest) {
-            await beforeRequest(combinedOptions);
+            await beforeRequest(url, options);
         }
 
-        return combinedOptions;
+        return [url, options];
     }
 
     private async createRequest<T>(
@@ -104,9 +109,9 @@ export default class Gauk {
         optionsOverride?: Options
     ): Promise<IResponse<T>> {
         let options = this.combineOptions(optionsUser, optionsOverride);
-        options = await this.prepareOptions(options);
+        [url, options] = await this.prepareOptions(url, options);
 
-        const response = await fetch(this.concat(options.baseUrl || "", url), options);
+        const response = await fetch(url, options);
 
         const data = await this.parseResponseData<T>(response, options.responseType);
 
