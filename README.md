@@ -1,5 +1,7 @@
 <h1 align="center">Gauk 🇱🇹</h1>
 
+<h3 align="center">The simple axios inspired fetch wrapper</h3>
+
 <br />
 
 <div align="center">
@@ -8,10 +10,6 @@
 <img src="https://img.shields.io/npm/v/gauk?style=flat-square" />
  
 </div>
-
-## The what
-
-The axios inspired fetch wrapper
 
 ## Why not just use X?
 
