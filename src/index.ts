@@ -79,9 +79,9 @@ export default class Gauk {
     private parseRequestBody(body: any) {
         let parsedBody: FormData | string | undefined = undefined;
 
-        if (body instanceof FormData) {
+        if (body instanceof FormData || typeof body === "string") {
             parsedBody = body;
-        } else if (body) {
+        } else {
             parsedBody = JSON.stringify(body);
         }
 

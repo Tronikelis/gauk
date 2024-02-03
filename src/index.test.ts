@@ -201,3 +201,22 @@ it("beforeRequest hooks can change options", async () => {
 
     await gauk.get("/foo");
 });
+
+it("parses body correctly", async () => {
+    const gauk = new Gauk();
+
+    await gauk.post("/foo", "foo");
+    expect(fetchMock).toHaveBeenCalledWith("/foo", expect.objectContaining({ body: "foo" }));
+
+    await gauk.post("/foo", new FormData());
+    expect(fetchMock).toHaveBeenCalledWith(
+        "/foo",
+        expect.objectContaining({ body: new FormData() })
+    );
+
+    await gauk.post("/foo", { foo: "bar" });
+    expect(fetchMock).toHaveBeenCalledWith(
+        "/foo",
+        expect.objectContaining({ body: JSON.stringify({ foo: "bar" }) })
+    );
+});
