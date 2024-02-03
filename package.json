@@ -23,7 +23,9 @@
         "url": "https://github.com/Tronikelis/gauk"
     },
     "scripts": {
+        "lint": "eslint -c ./.eslintrc.cjs .",
         "test": "vitest",
+        "tsc": "tsc --noEmit",
         "build": "tsup"
     },
     "dependencies": {
