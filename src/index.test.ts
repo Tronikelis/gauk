@@ -2,8 +2,7 @@ import { beforeEach, expect, it, vi } from "vitest";
 
 import Gauk from ".";
 
-const fetchMock = vi.fn(fetch);
-globalThis.fetch = fetchMock;
+const fetchMock = vi.spyOn(globalThis, "fetch");
 
 beforeEach(() => {
     fetchMock.mockClear();
