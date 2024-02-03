@@ -1,7 +1,7 @@
 {
     "name": "gauk",
     "type": "module",
-    "version": "0.3.0",
+    "version": "1.0.0",
     "description": "The axios inspired fetch wrapper ",
     "main": "./dist/index.cjs",
     "types": "./dist/index.d.ts",
@@ -23,17 +23,22 @@
         "url": "https://github.com/Tronikelis/gauk"
     },
     "scripts": {
+        "lint": "eslint -c ./.eslintrc.cjs .",
+        "test": "vitest",
+        "tsc": "tsc --noEmit",
         "build": "tsup"
     },
     "dependencies": {
         "urlbat": "^4.1.0"
     },
     "devDependencies": {
+        "@types/node": "20.11.16",
         "eslint": "8.56.0",
         "eslint-config-tronikelis": "9.0.0",
         "prettier": "3.2.4",
         "prettier-config-tronikelis": "3.0.0",
         "tsup": "8.0.1",
-        "typescript": "5.3.3"
+        "typescript": "5.3.3",
+        "vitest": "1.2.2"
     }
 }
